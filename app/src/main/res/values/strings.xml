@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Telstra</string>
+    <string name="disc">Description is null</string>
+    <string name="title">Title missing is null</string>
 </resources>

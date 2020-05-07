@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceManager {
     private static Retrofit retrofit;
-    private static final String BASE_URL="https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/facts.json";
+    private static final String BASE_URL="https://dl.dropboxusercontent.com/s/2iodh4vg0eortkl/";
 
     public static NewsInterface getService(){
 

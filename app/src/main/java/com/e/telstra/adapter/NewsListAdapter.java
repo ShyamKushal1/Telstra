@@ -1,6 +1,7 @@
 package com.e.telstra.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,56 +28,34 @@ public class NewsListAdapter extends BaseAdapter {
     private List<NewsModel> newsModels;
     ListItemsBinding listItemsBinding;
 
-    public NewsListAdapter(Context context, List<NewsModel> newsModels) {
+    public NewsListAdapter(Context context,List<NewsModel> newsModels) {
         this.context = context;
         this.newsModels = newsModels;
     }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
-        NewsModel newsModel=newsModels.get(position);
-        listItemsBinding= DataBindingUtil.inflate(LayoutInflater.from(context),R.layout.activity_main, viewGroup,false);
-        //view = inflater.inflate(R.layout.list_items, viewGroup, false);
-        constraintLayout = view.findViewById(R.id.cl_Layout);
-        hookViews(constraintLayout);
-        listItemsBinding.setNews(newsModel);
-        /*tvDisc.setText(newsModel.getDescription());
-        ivImage.setImage(newsModel.getImage());*/
-        return view;
-    }
-
-    private void hookViews(ViewGroup vg) {
-        for (int i = 0; i < vg.getChildCount(); i++) {
-            View view = vg.getChildAt(i);
-            if (view instanceof TextView) {
-                switch (view.getId()) {
-                    case R.id.tv_Title:
-                        tvTitle = (TextView) view;
-                        break;
-                    case R.id.tv_Disc:
-                        tvDisc = (TextView) view;
-                        break;
-                }
-            }
-            if (view instanceof ImageView) {
-                switch (view.getId()) {
-                    case R.id.iv_Image:
-                        ivImage = (ImageView) view;
-                        break;
-                }
-            }
+        NewsModel newsModel = newsModels.get(position);
+        if (inflater == null) {
+            inflater = (LayoutInflater) viewGroup.getContext()
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
+        listItemsBinding = DataBindingUtil.inflate(inflater, R.layout.list_items, viewGroup, false);
 
+        Log.d("adapter", newsModel.getDescription() + " " + newsModel.getTitle());
+        listItemsBinding.setNews(newsModel);
+
+        return listItemsBinding.getRoot();
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return newsModels == null ? 0 : newsModels.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public NewsModel getItem(int i) {
+        return newsModels == null ? null : i < 0 ? null : i < newsModels.size() ? newsModels.get(i) : null;
     }
 
     @Override
@@ -85,4 +64,8 @@ public class NewsListAdapter extends BaseAdapter {
     }
 
 
+    public void setNewsList(List<NewsModel> newsModels) {
+        this.newsModels = newsModels;
+        Log.d("adapter", String.valueOf(newsModels.size()));
+    }
 }

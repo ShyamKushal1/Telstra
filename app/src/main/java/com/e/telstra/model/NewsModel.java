@@ -22,7 +22,7 @@ public class NewsModel {
     private String description;
 
     @Expose
-    @SerializedName("image")
+    @SerializedName("imageHref")
     private String image;
 
     public NewsModel(String title, String description, String image) {
@@ -58,10 +58,8 @@ public class NewsModel {
     @BindingAdapter("image")
     public static void loadImage(ImageView imageView, String imageURL) {
         Glide.with(imageView.getContext())
-                .setDefaultRequestOptions(new RequestOptions()
-                        .circleCrop())
+                .setDefaultRequestOptions(new RequestOptions())
                 .load(imageURL)
-                .placeholder(R.drawable.loading)
                 .into(imageView);
     }
 }

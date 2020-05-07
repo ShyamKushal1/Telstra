@@ -8,6 +8,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface NewsInterface {
-    @GET()
+    @GET("facts.json")
     Call<Result> getNewsResult();
 }

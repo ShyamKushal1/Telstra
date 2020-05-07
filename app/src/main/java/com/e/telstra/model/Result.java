@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Result {
 
-    @SerializedName("result")
+    @SerializedName("rows")
     @Expose
     private List<NewsModel> newsResult = null;
 

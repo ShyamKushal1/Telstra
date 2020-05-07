@@ -1,7 +1,11 @@
 package com.e.telstra.repository;
 
+import android.app.Application;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.e.telstra.interfaces.NewsInterface;
@@ -15,12 +19,16 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsRepository {
+public class NewsRepository extends AndroidViewModel {
 
-    //private ArrayList<Album> albums = new ArrayList<>();
+    public NewsRepository(@NonNull Application application) {
+        super(application);
+    }
+
     private MutableLiveData<List<NewsModel>> mutableLiveData = new MutableLiveData<>();
 
-    public MutableLiveData<List<NewsModel>> getMutableLiveData(String searchData){
+
+    public MutableLiveData<List<NewsModel>> getMutableLiveData(){
 
         final NewsInterface newsInterface= ServiceManager.getService();
 
@@ -32,9 +40,8 @@ public class NewsRepository {
                 if (result!=null && result.getNewsResult()!=null){
                     mutableLiveData.setValue(result.getNewsResult());
                     List<NewsModel> list=result.getNewsResult();
-                    for (NewsModel a :
-                            list) {
-                        Log.i("Album Artist Name",a.getDescription()+" "+a.getTitle());
+                    for (NewsModel a : list) {
+                        Log.i("News List",a.getDescription()+" "+a.getTitle()+" "+a.getImage());
                     }
 
                 }
@@ -49,5 +56,9 @@ public class NewsRepository {
             }
         });
         return mutableLiveData;
+    }
+
+    public LiveData<List<NewsModel>> getAllData() {
+        return getMutableLiveData();
     }
 }

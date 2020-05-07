@@ -30,8 +30,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin"
-                android:text="@{news.title}"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:text='@{news.title ?? @string/title}'
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@android:color/holo_blue_dark"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -41,11 +42,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin"
-                android:text="@{news.description}"
+                android:text='@{news.description ?? @string/disc}'
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintEnd_toStartOf="@id/iv_Image"
+                android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_Title" />
+                app:layout_constraintEnd_toStartOf="@id/iv_Image"
+                app:layout_constraintTop_toBottomOf="@id/tv_Title" />
 
             <ImageView
                 android:id="@+id/iv_Image"
@@ -54,7 +56,6 @@
                 android:src="@drawable/ic_launcher_foreground"
                 app:image="@{news.image}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/tv_Disc"
                 app:layout_constraintTop_toBottomOf="@+id/tv_Title" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
