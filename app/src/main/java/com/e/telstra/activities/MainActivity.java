@@ -9,9 +9,11 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.e.telstra.R;
 import com.e.telstra.adapter.NewsListAdapter;
+import com.e.telstra.common.NetworkUtil;
 import com.e.telstra.model.NewsModel;
 import com.e.telstra.repository.NewsRepository;
 
@@ -25,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
     private NewsListAdapter newsListAdapter;
     private ListView listView;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    private NetworkUtil networkUtil=new NetworkUtil();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +35,24 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
         listView = findViewById(R.id.listView);
         swipeRefreshLayout=findViewById(R.id.pull_Refresh);
         newsRepository = new ViewModelProvider(this).get(NewsRepository.class);
-        getData();
-        swipeRefreshLayout.setOnRefreshListener(this);
-        /**
-         * Showing Swipe Refresh animation on activity create
-         * As animation won't start on onCreate, post runnable is used
-         */
-        swipeRefreshLayout.post(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        swipeRefreshLayout.setRefreshing(true);
-                                        getData();
+        if (networkUtil.checkInternetConnection(this)){
+            getData();
+            swipeRefreshLayout.setOnRefreshListener(this);
+            /**
+             * Showing Swipe Refresh animation on activity create
+             * As animation won't start on onCreate, post runnable is used
+             */
+            swipeRefreshLayout.post(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            swipeRefreshLayout.setRefreshing(true);
+                                            getData();
+                                        }
                                     }
-                                }
-        );
+            );
+        }else
+            Toast.makeText(this, "No Internet", Toast.LENGTH_LONG).show();
+
     }
 
     private void getData() {
