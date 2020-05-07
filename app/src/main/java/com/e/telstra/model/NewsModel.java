@@ -60,6 +60,7 @@ public class NewsModel {
         Glide.with(imageView.getContext())
                 .setDefaultRequestOptions(new RequestOptions())
                 .load(imageURL)
+                .placeholder(R.drawable.ic_launcher_background)
                 .into(imageView);
     }
 }
