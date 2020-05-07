@@ -28,7 +28,7 @@ public class NewsListAdapter extends BaseAdapter {
     private List<NewsModel> newsModels;
     ListItemsBinding listItemsBinding;
 
-    public NewsListAdapter(Context context,List<NewsModel> newsModels) {
+    public NewsListAdapter(Context context, List<NewsModel> newsModels) {
         this.context = context;
         this.newsModels = newsModels;
     }
@@ -43,7 +43,8 @@ public class NewsListAdapter extends BaseAdapter {
         listItemsBinding = DataBindingUtil.inflate(inflater, R.layout.list_items, viewGroup, false);
 
         Log.d("adapter", newsModel.getDescription() + " " + newsModel.getTitle());
-        listItemsBinding.setNews(newsModel);
+        if (newsModel.getTitle() != null)
+            listItemsBinding.setNews(newsModel);
 
         return listItemsBinding.getRoot();
     }

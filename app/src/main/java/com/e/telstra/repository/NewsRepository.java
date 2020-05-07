@@ -11,7 +11,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.e.telstra.interfaces.NewsInterface;
 import com.e.telstra.manager.ServiceManager;
 import com.e.telstra.model.NewsModel;
-import com.e.telstra.model.Result;
 
 import java.util.List;
 

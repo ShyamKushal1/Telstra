@@ -1,5 +1,6 @@
-package com.e.telstra.model;
+package com.e.telstra.repository;
 
+import com.e.telstra.model.NewsModel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

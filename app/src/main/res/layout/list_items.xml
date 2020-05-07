@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/margin"
-                android:text='@{news.title ?? @string/title}'
+                android:text='@{news.title ?? ""}'
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textColor="@android:color/holo_blue_dark"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="@dimen/margin"
-                android:text='@{news.description ?? @string/disc}'
+                android:text='@{news.description ?? ""}'
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@android:color/black"
                 app:layout_constraintStart_toStartOf="parent"
