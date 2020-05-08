@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Telstra</string>
+    <string name="news_details">News Details</string>
     <string name="disc">Description is null</string>
-    <string name="title">Title missing is null</string>
+    <string name="title">Title is null</string>
+    <string name="image">Image url is null</string>
+    <string name="no_internet">No Internet</string>
 </resources>

@@ -21,9 +21,6 @@ import java.util.List;
 public class NewsListAdapter extends BaseAdapter {
 
     LayoutInflater inflater = null;
-    ConstraintLayout constraintLayout;
-    TextView tvTitle, tvDisc;
-    ImageView ivImage;
     Context context;
     private List<NewsModel> newsModels;
     ListItemsBinding listItemsBinding;
@@ -34,15 +31,14 @@ public class NewsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup viewGroup) {
-        NewsModel newsModel = newsModels.get(position);
+    public View getView(int position, View view, final ViewGroup viewGroup) {
+        final NewsModel newsModel = newsModels.get(position);
         if (inflater == null) {
             inflater = (LayoutInflater) viewGroup.getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         }
         listItemsBinding = DataBindingUtil.inflate(inflater, R.layout.list_items, viewGroup, false);
 
-        Log.d("adapter", newsModel.getDescription() + " " + newsModel.getTitle());
         if (newsModel.getTitle() != null)
             listItemsBinding.setNews(newsModel);
 
@@ -64,9 +60,4 @@ public class NewsListAdapter extends BaseAdapter {
         return 0;
     }
 
-
-    public void setNewsList(List<NewsModel> newsModels) {
-        this.newsModels = newsModels;
-        Log.d("adapter", String.valueOf(newsModels.size()));
-    }
 }
