@@ -38,11 +38,6 @@ public class NewsRepository extends AndroidViewModel {
                 Result result=response.body();
                 if (result!=null && result.getNewsResult()!=null){
                     mutableLiveData.setValue(result.getNewsResult());
-                    List<NewsModel> list=result.getNewsResult();
-                    for (NewsModel a : list) {
-                        Log.i("News List",a.getDescription()+" "+a.getTitle()+" "+a.getImage());
-                    }
-
                 }
                 Log.i("url ", String.valueOf(call.request().url()));
                 Log.i("Success","successfully downloaded");

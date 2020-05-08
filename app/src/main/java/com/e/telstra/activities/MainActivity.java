@@ -22,6 +22,7 @@ import com.e.telstra.fragments.NewsDetailFragment;
 import com.e.telstra.model.NewsModel;
 import com.e.telstra.repository.NewsRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener, AdapterView.OnItemClickListener {
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements SwipeRefreshLayou
             public void onChanged(List<NewsModel> newsModels) {
                 Log.d("activity", String.valueOf(newsModels.size()));
                 newsList = newsModels;
-                newsListAdapter = new NewsListAdapter(MainActivity.this, newsModels);
+                newsListAdapter = new NewsListAdapter(MainActivity.this, newsList);
                 listView.setAdapter(newsListAdapter);
                 swipeRefreshLayout.setRefreshing(false);
             }

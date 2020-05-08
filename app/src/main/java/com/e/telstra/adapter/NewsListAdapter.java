@@ -1,15 +1,11 @@
 package com.e.telstra.adapter;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.databinding.DataBindingUtil;
 
 import com.e.telstra.R;
@@ -39,9 +35,9 @@ public class NewsListAdapter extends BaseAdapter {
         }
         listItemsBinding = DataBindingUtil.inflate(inflater, R.layout.list_items, viewGroup, false);
 
-        if (newsModel.getTitle() != null)
+        if (newsModel.getTitle() != null) {
             listItemsBinding.setNews(newsModel);
-
+        }
         return listItemsBinding.getRoot();
     }
 
